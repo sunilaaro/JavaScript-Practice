@@ -1,0 +1,16 @@
+.dragDrop{
+    width: 300px;
+    margin: 10px;
+    float: left;
+}
+.dragdiv{
+    width: 250px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+.btnDiv{
+    margin: 10px;
+    margin-top: 50px;
+    float: left;
+}

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script> -->
+    <style> 
+        .form{
+            margin: 0 auto;
+            background-color:aqua;
+            width:50%;
+            height: 300px;
+            top: 30px;
+        }
+        input{
+            margin: 10px;
+        }
+        .outPut{
+            float: left;
+            margin: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        function someObject(perameter){
+            this.propertyOne= perameter;
+            this.propertyTwo= "Hi I am second property";
+            someObject.prototype.printProOne= function(){
+                conlose.log(this.propertyOne);
+            }
+            someObject.prototype.printProTwo= function(){
+                conlose.log(this.propertyTwo);
+            }
+        }
+        var myObject = new someObject('Hi, I am first property');
+        console.log(myObject);
+        myObject.printProOne;
+        myObject.printProTwo;
+
+        function Mamal(specise, sound){
+            this.specise = specise;
+            this.sound = sound;
+
+        }
+        Mamal.prototype = {
+                constructor: Mamal,
+                makeSound: function(){
+                    console.log('I am a ' + this.specise + " "+'and my sound is' +" "+ this.sound);
+                }
+            }
+            var cat = new Mamal("cat", "Meow");
+            console.log(cat);
+            cat.makeSound();
+
+        /*----------------Array loop-----------*/   
+            var text ="";
+            myArray =[
+                'first',
+                'second',
+                'third',
+            ];
+            for(i=0; i<myArray.length; i++){
+                text += myArray[i] + "\n";
+            }
+            console.log(text);
+           /*-------------Araay End--------------*/
+           /*-----------Get Browser URL ---------*/
+           var Url = document.URL;
+           console.log(Url);
+           /*----------End------------------------*/
+
+     </script>
+</head>
+<body>
+    <div>
+        <h2>Dynamic form submit</h2>
+        <form id="myForm" onsubmit="numberForm()">
+            <input type="text" name="formValue" id="formValue" />
+            <input type="submit" value="Submit" />
+        </form>
+        <p id="output"></p>
+        <script type="text/javascript">
+            function myNumber(){
+                    this.firstNumber = 10;
+                }
+                myNumber.prototype.addTotalValue = function(number){
+                    this.total = this.firstNumber + number;
+                }
+                myNumber.prototype.getTotal = function (){
+                    console.log(this.total);
+                    var outPut = this.total;
+                    document.getElementById('output').innerHTML=outPut;
+                }
+                var anNumber = new myNumber();
+                anNumber.addTotalValue(5);
+                anNumber.getTotal();
+               function numberForm(){
+                    var form = document.getElementById('myForm');
+                    console.log(form);
+                    form.onsubmit = function(e){
+                        var newObject = new myNumber();
+                        var formValue = document.getElementById('formValue').value;
+                        console.log('formValue', formValue);
+                        newObject.addTotalValue(parseInt(formValue));
+                        newObject.getTotal();
+                        e.preventDefault();
+                    }
+                }
+                window.onload =function(){
+                    numberForm();
+                    handleSubmit();
+                    
+                }
+            </script>
+    </div>
+    <br><hr>
+    <div>
+        <h2>Dynamic slector</h2>
+        <ul id="itemList">
+            <li class="library">React</li>
+            <li class="library">View</li>
+            <li class="language">JavaScript</li>
+            <li class="framwork">Angular</li>
+            <li class="language">Node</li>
+            <li class="framwork">Express</li>
+        </ul>
+        <button onclick="framwork()">Select framwork</button>
+        <button onclick="library()">Select library</button>
+        <button onclick="language()">Select language</button>
+   
+        <script type="text/javascript">
+
+            function clear(){
+                var allRow = document.querySelectorAll("#itemList li");
+                for (var i = 0; i < allRow.length; i++){
+                        allRow[i].style.color ='black';
+                }
+            }
+            function framwork(){
+                clear();
+                var allRow = document.querySelectorAll("#itemList li.framwork");
+                for (var i = 0; i < allRow.length; i++){
+                        allRow[i].style.color ='red';
+                }
+            }
+            function library(){
+                clear();
+                var allRow = document.querySelectorAll("#itemList li.library");
+                for (var i = 0; i < allRow.length; i++){
+                        allRow[i].style.color ='green';
+                }
+                
+            }
+            function language(){
+                clear();
+                var allRow = document.querySelectorAll("#itemList li.language");
+                for (var i = 0; i < allRow.length; i++){
+                        allRow[i].style.color ='blue';
+                }
+            }
+        </script>
+     </div>
+    <br><hr>
+    <div>
+        <h2>Geo location</h2>
+        <button onclick="getLocation()">Get Location</button>
+
+        <div id="demo"></div>
+    </div>
+    <script type="text/javascript">
+
+         //var location = document.getElementById('location');
+         var demo = document.getElementById('demo');
+         function getLocation(){
+           if(navigator.geolocation){
+               navigator.geolocation.getCurrentPosition(showPosition);
+           }else{
+            demo.innerHTML="GeoLocation is not support";
+           }
+         }
+         function showPosition(position){
+            demo.innerHTML = "Latitude:" + position.coords.latitude + "<br> Longitude:" + position.coords.longitude;
+         } 
+      </script>
+      <br><hr>
+      <div>
+          <h2>Web Local Storage API</h2>
+          <button onclick="count()">count</button>
+          <button onclick="remove()">remove</button>
+          <p id="result"></p>
+          <script type="text/javascript">
+
+            function count(){
+                if (typeof (Storage) !== 'undefined'){
+                    if(localStorage.current){
+                      localStorage.current = Number(localStorage.current) +1;
+                    }else{
+                        localStorage.current=1;
+                    }
+                    document.getElementById('result').innerHTML= 'You have click the button'+' '+localStorage.current+' '+'times';
+                    
+                }else{
+                    alert('Sorry, Your browser is not supported storage!');
+                }
+            }
+            function remove(){
+                count();
+                    localStorage.clear()
+                    document.getElementById('result').innerHTML= 'You have click the button'+' '+ 0 +' '+'times';
+            }
+          </script>
+      </div>
+      <br><hr>
+      <div class="form">
+          <form id="userForm" onsubmit="handleSubmit()">
+            <input type="text" name="fname" id="fname">
+            <input type="text" name="lname" id="lname">
+            <input type="text" name="email" id="email">
+            <button type="submit">Submit</button>
+          </form>
+          <div id="outPut">
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Firstname</th>
+                                <th>Lastname</th>
+                                <th>Email</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td id="formResult"></td>
+                                
+                              </tr>
+                            </tbody>
+                    </table>
+              
+          </div>
+          <br>
+      </div>
+      <script type="text/javascript">
+
+      function handleSubmit(){
+       /*  var fname = document.getElementById('fname').value;
+           var lname = document.getElementById('lname').value;
+           var email = document.getElementById('email').value;
+           var outPut = document.getElementById('outPut').innerHTML="fname:" + fname +  '\n'+ "Last Name:" + lname + '\n'+ "Email:" + email;
+           alert(outPut);
+           e.preventDefault();
+      } */
+     
+            var userForm = document.getElementById('userForm');
+            console.log(userForm);
+            userForm.onsubmit = function(e){
+            var fname = document.getElementById('fname').value;
+            var lname = document.getElementById('lname').value;
+            var email = document.getElementById('email').value;
+            node = document.createElement("td");
+            var output = document.createTextNode(fname + lname +  email);
+        
+            console.log(output);
+            node.appendChild(output);
+            document.getElementById("formResult").appendChild(node);
+            e.preventDefault();
+            }
+        }
+      </script>
+      <hr class="">
+      <form onsubmit="">
+            <label style="width:50px;">
+            <input type="text"
+             name="coupon1" id="in" onkeyup="verify(coupon1)" class="coupon" title="Enter coupon" value="">
+            <span id="usernameError"></span></label>
+            <input type="button" value="Submit" onClick="validate(coupon)" />
+        </form>
+        <form onsubmit="">
+           <input type="checkbox" name="coupon" value="31287" class="coupon" id="inc" onclick="validate(coupon)" >Please select the you coupon!: <span>4375hdjksf</span>
+        </form>   
+            <span id="message"></span>
+            <span id="err"></span>
+            <script>
+              verify = function(e){
+                    document.getElementById('err').innerHTML="Invalid coupon";
+                        document.getElementById('message').innerHTML="";
+                        return false;
+                }
+                function validate(coupon) {
+                    var cuopan_patten = /^((?!(87))[0-9]{5})$/g
+                    document.getElementById('in').value = document.getElementById('inc').value;
+                    var myRe = document.getElementById('in').value;
+                    var coupon = myRe.trim();
+                    var input = document.getElementById('in').value;
+                    console.log(coupon.match(cuopan_patten));
+
+                    if(coupon == coupon.match(cuopan_patten) && document.getElementById('inc').checked == true){
+                        document.getElementById('message').innerHTML="Coupon applied!";
+                        document.getElementById('err').innerHTML="";
+                        return true;
+                    } else {
+                        document.getElementById('err').innerHTML="Invalid coupon";
+                        document.getElementById('message').innerHTML="";
+                        return false;
+                    }
+                }
+            </script>
+
+
+<!-----truthy and falsy value-->
+<h2>Truthy and falsy value</h2>
+<script type="text/javaScript">
+let height;
+height='1';
+if (height){
+    console.log('Variable is assigned');
+}else if( height==0){
+    console.log('value if not equal');
+}
+else{
+    console.log('Value is not assign of this value');
+}
+</script>
+<!-----truthy and falsy value End-->
+
+
+<!-----Drop donw list-->
+
+<h2>Dropdown list by API</h2>
+<select id="locality-dropdown">
+   
+</select>
+<script type="text/javaScript">
+    let dropdown = document.getElementById('locality-dropdown');
+dropdown.length = 0;
+
+let defaultOption = document.createElement('option');
+defaultOption.text = 'Choose State/Province';
+
+dropdown.add(defaultOption);
+dropdown.selectedIndex = 0;
+
+const url = 'https://api.myjson.com/bins/7xq2x';
+
+const request = new XMLHttpRequest();
+request.open('GET', url, true);
+
+request.onload = function() {
+  if (request.status === 200) {
+    const data = JSON.parse(request.responseText);
+    let option;
+    for (let i = 0; i < data.length; i++) {
+      option = document.createElement('option');
+      option.text = data[i].name;
+      option.value = data[i].abbreviation;
+      dropdown.add(option);
+    }
+   } else {
+    // Reached the server, but it returned an error
+  }   
+}
+
+request.onerror = function() {
+  console.error('An error occurred fetching the JSON from ' + url);
+};
+
+request.send();
+
+</script>
+<!-----Drop donw list End-->
+</body>
+</html>
