@@ -367,6 +367,36 @@ request.onerror = function() {
 request.send();
 
 </script>
-<!-----Drop donw list End-->
+<!-----Dropdonw list End-->
+
+<!---Araay Practie-->
+<h2>Array practice check in console</h2>
+<script>
+var names = ["Mancy","Nancy","Pancy"];
+
+
+
+names.push("Socsy");  // add new element end of the array with this push()
+names.unshift('Ram'); //add new element start of the array with unshift()
+names[5] ="Mocsy";    // Replace of the element in array and add new element in end of the array
+console.log(names);
+console.log(names.length);
+
+names.pop();         // Delete last Element of the array with pop()
+console.log(names);  
+
+names.shift();    // Delete or remove 0 position of the element in array with shift()
+console.log(names);
+
+console.log(names.indexOf('Mancy'));  //Define place in array if element is there else retrun -1
+console.log(names.indexOf(23));
+
+
+const isSunil = names.indexOf('Sunil') === -1 ? 'Sunil is not found in this list' : 'Yes Sunil is there';
+console.log(isSunil);
+</script>
+<!--End Array-->
+
+
 </body>
 </html>
