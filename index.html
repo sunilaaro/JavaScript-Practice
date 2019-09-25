@@ -374,8 +374,6 @@ request.send();
 <script>
 var names = ["Mancy","Nancy","Pancy"];
 
-
-
 names.push("Socsy");  // add new element end of the array with this push()
 names.unshift('Ram'); //add new element start of the array with unshift()
 names[5] ="Mocsy";    // Replace of the element in array and add new element in end of the array
@@ -396,6 +394,123 @@ const isSunil = names.indexOf('Sunil') === -1 ? 'Sunil is not found in this list
 console.log(isSunil);
 </script>
 <!--End Array-->
+
+<!--Practice logical js-->
+<script>
+function tipCalculator(bill){
+    var percentage;
+    if(bill<50){
+        percentage = .2;
+    }
+    else if(bill >=50 && bill <=200){
+        percentage = .15;
+    }else{
+        percentage = .1;
+    }
+    return percentage * bill;
+}
+//console.log(tipCalculator(300));
+const bill = [50,110,250]
+
+const tips = [tipCalculator(bill[0]),
+              tipCalculator(bill[1]),
+              tipCalculator(bill[2])
+]
+
+const finalPaid = [
+    tips[0]+bill[0],
+    tips[1]+bill[1],
+    tips[2]+bill[2]
+]
+console.log(tips , finalPaid);
+
+</script>
+
+<!--End-->
+<hr>
+<!--Redio button-->
+<p>Select a radio button and click on Submit.</p> 
+  
+Gender: 
+<input type="radio" name="Gender" value="Male">Male 
+<input type="radio" name="Gender" value="Female">Female 
+<input type="radio" name="Gender" value="Others">Others 
+  
+<button type="button" onclick="displayRadioValue()"> 
+    Submit 
+</button> 
+  
+<br> 
+  
+<div id="redioResult"></div> 
+  
+<script> 
+    function displayRadioValue() { 
+        document.getElementById("redioResult").innerHTML = ""; 
+        var ele = document.getElementsByTagName('input'); 
+          
+        for(i = 0; i < ele.length; i++) { 
+              
+            if(ele[i].type="radio") { 
+              
+                if(ele[i].checked) 
+                    document.getElementById("redioResult").innerHTML 
+                            += ele[i].name + " Value: " 
+                            + ele[i].value + "<br>"; 
+            } 
+        } 
+    } 
+</script> 
+<!--End-->
+<!----Second last 3 no validation-->
+<h2>Second last 3 no validation</h2>
+<form>
+    <input type="text" name="chrtname" id="chrt" />
+    <button onclick="datvalidation()">Submit</button>
+    <div id="demo"></div>
+</form>
+<script>
+function datvalidation(){
+    var data = document.getElementById('chrt').value;
+    var singleFound, multiPleFound;
+    for(var i=0; i < data.length; i++) {
+      if(data[i+1]=="1" && data[i+2]=="0" && data[i+3]=="1") {
+        singleFound = "true"
+        }
+      if(data[i+1]=="B" && data[i+2]=="A" && data[i+3]=="3"){
+            multiPleFound="true";
+        }
+    }
+    if(singleFound =="true") { 
+       alert('This is Single mode');
+    }else if(multiPleFound=="true") {
+        alert('This is Multiple mode');
+    }else{
+     alert('Not accepted');
+    }
+    
+}
+</script>
+<script>
+    /* function datvalidation(){
+        var getInput = document.getElementById('chrt').value;
+        //var str = "330000011011";
+        //var n = getInput.indexOf("101");
+        if(getInput.indexOf("101")){
+            //return true;
+            alert('This is single mode');
+        }else if(getInput.indexOf("BA3")){
+         alert('This is  Multiple Mode');
+        }else{
+            alert('Not accepted');
+        }
+       
+       
+    } */
+ </script>
+ 
+<!--End-->
+
 
 
 </body>
